@@ -14,18 +14,20 @@
         <events>
             <controller_front_init_before>
                 <observers>
-                    <type>singleton</type>
-                    <class>Aligent_VaryCookie_Model_Observer</class>
-                    <method>setKeysFromCookie</method>
+                    <aligent_varycookie_setkeys>
+                        <type>singleton</type>
+                        <class>Aligent_VaryCookie_Model_Observer</class>
+                        <method>setKeysFromCookie</method>
+                    </aligent_varycookie_setkeys>
                 </observers>
             </controller_front_init_before>
             <controller_front_send_response_before>
                 <observers>
-                    <aligent_varycookie>
+                    <aligent_varycookie_setcookie>
                         <type>singleton</type>
                         <class>Aligent_VaryCookie_Model_Observer</class>
                         <method>setVaryCookie</method>
-                    </aligent_varycookie>
+                    </aligent_varycookie_setcookie>
                 </observers>
             </controller_front_send_response_before>
         </events>
