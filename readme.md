@@ -1,6 +1,6 @@
 Aligent VaryCookie Extension
 =====================
-Use this module with some custom varnish rules to vary the varnish cache based on a cookie.
+Use this module with some custom Varnish rules to vary the Varnish cache based on a cookie.
 Facts
 -----
 - version: 0.0.0
@@ -9,9 +9,38 @@ Facts
 
 Description
 -----------
-Use this module with some custom varnish rules to vary the varnish cache based on a cookie. 
+Use this module with some custom Varnish rules to vary the Varnish cache based on a cookie. 
 
+To get started, you will need to add the following changes to your Varnish config file, usually `/etc/varnish/default.vcl`.
 
+- Convert any incoming `AligentVary` cookies to an `X-AligentVary` header, add the following lines somewhere near the end of
+  the `vcl_recv` section:
+
+```
+   if (req.http.Cookie ~ "AligentVary=") {
+     set req.http.X-AligentVary = regsub(req.http.cookie, ".*AligentVary=([^;]+);.*", "\1");
+   }
+```
+
+- Tell Varnish to vary on the `X-AligentVary header`, add the following lines somewhere in the content delivery section of 
+  the `vcl_fetch` section:
+  
+```
+   if (beresp.http.Vary) {
+     set beresp.http.Vary = beresp.http.Vary + ", X-AligentVary";
+   } else {
+     set beresp.http.Vary = "X-AligentVary";
+   }
+```
+
+- Finally, Varnish should hide the existence of the custom header from downstream clients, add the following lines
+  somewhere near the top of the `vcl_deliver` section:
+  
+```
+   if (resp.http.Vary) {
+     set resp.http.Vary = regsub(resp.http.Vary, "X-AligentVary", "Cookie");
+   }
+```
 
 Requirements
 ------------
