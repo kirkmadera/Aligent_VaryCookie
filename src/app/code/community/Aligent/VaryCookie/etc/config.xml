@@ -12,11 +12,12 @@
             </aligent_varycookie>
         </models>
         <events>
+            <!-- Note, controller_front_init_before must go in global. front doesn't exist at this point. -->
             <controller_front_init_before>
                 <observers>
                     <aligent_varycookie_setkeys>
-                        <type>singleton</type>
-                        <class>Aligent_VaryCookie_Model_Observer</class>
+                        <type>model</type>
+                        <class>aligent_varycookie/observer</class>
                         <method>setKeysFromCookie</method>
                     </aligent_varycookie_setkeys>
                 </observers>
@@ -24,8 +25,8 @@
             <controller_front_send_response_before>
                 <observers>
                     <aligent_varycookie_setcookie>
-                        <type>singleton</type>
-                        <class>Aligent_VaryCookie_Model_Observer</class>
+                        <type>model</type>
+                        <class>aligent_varycookie/observer</class>
                         <method>setVaryCookie</method>
                     </aligent_varycookie_setcookie>
                 </observers>

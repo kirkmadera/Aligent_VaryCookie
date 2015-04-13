@@ -37,16 +37,15 @@ class Aligent_VaryCookie_Model_Observer
         $front = $observer->getFront();
 
         /** @var Aligent_VaryCookie_Model_Keys $varyKeys */
-        $varyKeys = Mage::getSingleton('aligent_varycookie/varyKeys');
+        $varyKeys = Mage::getSingleton('aligent_varycookie/keys');
 
         /** @var Mage_Core_Model_Cookie $cookie */
         $cookie = Mage::getSingleton('core/cookie');
 
-        if ($varyCookie = $cookie->getCookie(self::COOKIE_NAME)) {
+        if ($varyCookie = $cookie->get(self::COOKIE_NAME)) {
             $varyKeys->setKeysFromVaryString($varyCookie);
         }
     }
-
 
     /**
      * Observes the controller_front_send_response_before event, and sets the AligentVary cookie based on
@@ -60,17 +59,17 @@ class Aligent_VaryCookie_Model_Observer
         $front = $observer->getFront();
 
         /** @var Aligent_VaryCookie_Model_Keys $varyKeys */
-        $varyKeys = Mage::getSingleton('aligent_varycookie/varyKeys');
+        $varyKeys = Mage::getSingleton('aligent_varycookie/keys');
 
         // Allows custom modification of vary keys prior to setting the cookie.
         Mage::dispatchEvent('aligent_varycookie_cookie_set_before', array('keys' => $varyKeys));
 
-        if (!$varyKeys->hasKeys()) {
-            return;
-        }
-
         /** @var Mage_Core_Model_Cookie $cookie */
         $cookie = Mage::getSingleton('core/cookie');
-        $cookie->set(self::COOKIE_NAME, $varyKeys->getVaryString(), true);
+        if (!$varyKeys->hasKeys()) {
+            $cookie->delete(self::COOKIE_NAME);
+        } else {
+            $cookie->set(self::COOKIE_NAME, $varyKeys->getVaryString(), true);
+        }
     }
 }
