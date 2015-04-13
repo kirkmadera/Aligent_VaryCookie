@@ -42,6 +42,10 @@ class Aligent_VaryCookie_Model_Observer
         // Allows custom modification of vary keys prior to setting the cookie.
         Mage::dispatchEvent('aligent_varycookie_cookie_set_before', array('keys' => $varyKeys));
 
+        if (!$varyKeys->hasKeys()) {
+            return;
+        }
+
         $cookie = Mage::getSingleton('core/cookie');
         $cookie->set(self::COOKIE_NAME, $varyKeys->getVaryString(), true);
     }
