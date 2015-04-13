@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Aligent_VaryCookie>
+            <version>1.0.0</version>
+        </Aligent_VaryCookie>
+    </modules>
+    <global>
+        <helpers>
+            <aligent_varycookie>
+                <class>Aligent_VaryCookie_Helper</class>
+            </aligent_varycookie>
+        </helpers>
+        <models>
+            <aligent_varycookie>
+                <class>Aligent_VaryCookie_Model</class>
+            </aligent_varycookie>
+        </models>
+    </global>
+</config>
