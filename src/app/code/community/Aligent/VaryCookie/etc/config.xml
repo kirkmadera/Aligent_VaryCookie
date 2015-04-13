@@ -6,11 +6,6 @@
         </Aligent_VaryCookie>
     </modules>
     <global>
-        <helpers>
-            <aligent_varycookie>
-                <class>Aligent_VaryCookie_Helper</class>
-            </aligent_varycookie>
-        </helpers>
         <models>
             <aligent_varycookie>
                 <class>Aligent_VaryCookie_Model</class>
