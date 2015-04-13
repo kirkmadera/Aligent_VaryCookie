@@ -1,6 +1,6 @@
 {
     "name": "Aligent/VaryCookie",
-    "license": "OSL-3.0",
+    "license": "proprietary",
     "type": "magento-module",
     "description": "Use this module with some custom varnish rules to vary the varnish cache based on a cookie.",
     "require": {
