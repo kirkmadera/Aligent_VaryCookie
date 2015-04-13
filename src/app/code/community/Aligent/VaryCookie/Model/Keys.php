@@ -65,7 +65,7 @@ class Aligent_VaryCookie_Model_Keys
     }
 
     /**
-     * Replaces any existing keys with those supplied here. The values of the array will be used for vary keys, the keys
+     * Replaces all existing keys with those supplied here. The values of the array will be used for vary keys, the keys
      * of the array will be ignored. Any duplicates will be ignored.
      * 
      * @param array $keys
@@ -76,6 +76,18 @@ class Aligent_VaryCookie_Model_Keys
     {
         self::$varyKeys = array_fill_keys($keys, true);
         return $this;
+    }
+
+    /**
+     * Checks whether or not a particular key is set.
+     *
+     * @param $key
+     *
+     * @return bool
+     */
+    public function isSetKey($key)
+    {
+        return array_key_exists($key, self::$varyKeys);
     }
 
     /**
@@ -110,4 +122,17 @@ class Aligent_VaryCookie_Model_Keys
         return $varyString;
     }
 
+    /**
+     * Replaces all existing keys with the keys supplied in $varyString.
+     *
+     * @param $varyString
+     *
+     * @return $this
+     */
+    public function setKeysFromVaryString($varyString)
+    {
+        $keys = explode(self::GLUE_CHAR, $varyString);
+        $this->setKeys($keys);
+        return $this;
+    }
 }
