@@ -1,6 +1,6 @@
 <?php
 /**
- * VaryKeys.php
+ * Keys.php
  *
  * @category  Aligent
  * @package   Aligent_VaryCookie
@@ -11,7 +11,7 @@
  */
 
 /**
- * Aligent_VaryCookie_Model_VaryKeys
+ * Aligent_VaryCookie_Model_Keys
  *
  * This model should be used as a singleton, however keys are stored statically and will work like a singleton
  * regardless of the method of instantiation.
@@ -29,7 +29,7 @@
  * @license   All Rights Reserved.
  * @link      http://www.aligent.com.au/
  */
-class Aligent_VaryCookie_Model_VaryKeys
+class Aligent_VaryCookie_Model_Keys
 {
 
     const GLUE_CHAR = '|';
@@ -87,6 +87,16 @@ class Aligent_VaryCookie_Model_VaryKeys
     {
         ksort(self::$varyKeys);
         return array_keys(self::$varyKeys);
+    }
+
+    /**
+     * Checks whether any keys have been set.
+     *
+     * @return bool Whether or not there are any keys.
+     */
+    public function hasKeys()
+    {
+        return count(self::$varyKeys) > 0;
     }
 
     /**

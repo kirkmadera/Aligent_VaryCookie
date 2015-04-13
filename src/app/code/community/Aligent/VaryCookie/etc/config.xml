@@ -11,5 +11,16 @@
                 <class>Aligent_VaryCookie_Model</class>
             </aligent_varycookie>
         </models>
+        <events>
+            <controller_front_send_response_before>
+                <observers>
+                    <aligent_varycookie>
+                        <type>singleton</type>
+                        <class>Aligent_VaryCookie_Model_Observer</class>
+                        <method>setVaryCookie</method>
+                    </aligent_varycookie>
+                </observers>
+            </controller_front_send_response_before>
+        </events>
     </global>
 </config>
