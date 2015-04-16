@@ -1,15 +1,15 @@
 {
-    "name": "aligent/varycookie",
-    "license": "proprietary",
-    "type": "magento-module",
-    "description": "Use this module with some custom Varnish rules to vary the varnish cache based on a cookie.",
-    "require": {
-        "magento-hackathon/magento-composer-installer": "*"
-    },
-    "authors":[
-        {
-            "name":"Luke Mills",
-            "email":"luke@aligent.com.au"
-        }
-    ]
+  "name": "aligent/varycookie",
+  "license": "proprietary",
+  "type": "magento-module",
+  "description": "Use this module with some custom Varnish rules to vary the varnish cache based on a cookie.",
+  "require": {
+    "magento-hackathon/magento-composer-installer": "*"
+  },
+  "authors": [
+    {
+      "name": "Luke Mills",
+      "email": "luke@aligent.com.au"
+    }
+  ]
 }
