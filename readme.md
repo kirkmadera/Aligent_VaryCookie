@@ -44,7 +44,7 @@ To get started, you will need to add the following changes to your Varnish confi
 
 Usage
 -----
-*Example**: To vary the varnish cache on a customer's group, you can add an observer to the `customer_session_init`
+**Example**: To vary the varnish cache on a customer's group, you can add an observer to the `customer_session_init`
 event. Note, the `customer_session_init` event seems to always be triggered when a customer's group changes, and may be more reliable than observing the login or logout events:
 
 In your module's `config.xml`:
@@ -73,7 +73,7 @@ In your observer model:
 
         $varyKeys = Mage::getSingleton('aligent_varycookie/keys');
 
-        $varyKeys->setKey('customer_group', $groupCode);
+        $varyKeys->addKey('customer_group', $groupCode);
     }
 ```
 
