@@ -91,7 +91,8 @@ class Aligent_VaryCookie_Model_Keys
 
     /**
      * Replaces all existing keys with those supplied here. The values of the array will be used for vary keys, the keys
-     * of the array will be ignored. Any duplicates will be ignored.
+     * of the array will be ignored. Any duplicates will be ignored. Boolean values will be converted to string
+     * 'true' and 'false'.
      *
      * @param array $keys
      *
