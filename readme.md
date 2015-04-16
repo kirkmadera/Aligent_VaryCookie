@@ -53,7 +53,7 @@ In your module's `config.xml`:
                 <observers>
                     <my_module_customer_session_init>
                         <type>model</type>
-                        <class>yakima_vip/customer_observer</class>
+                        <class>my_module/customer_observer</class>
                         <method>customerSessionInit</method>
                     </my_module_customer_session_init>
                 </observers>
