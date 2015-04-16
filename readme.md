@@ -42,6 +42,42 @@ To get started, you will need to add the following changes to your Varnish confi
    }
 ```
 
+Usage
+-----
+*Example**: To vary the varnish cache on a customer's group, you can add an observer to the `customer_session_init`
+event. Note, the `customer_session_init` event seems to always be triggered when a customer's group changes, and may be more reliable than observing the login or logout events:
+
+In your module's `config.xml`:
+```
+            <customer_session_init>
+                <observers>
+                    <my_module_customer_session_init>
+                        <type>model</type>
+                        <class>yakima_vip/customer_observer</class>
+                        <method>customerSessionInit</method>
+                    </my_module_customer_session_init>
+                </observers>
+            </customer_session_init>
+```
+
+In your observer model:
+```
+   public function customerSessionInit(Varien_Event_Observer $observer)
+    {
+        /** @var Mage_Customer_Model_Session $customerSession */
+        $customerSession = $observer->getCustomerSession();
+
+        $groupId = $customerSession->getCustomerGroupId();
+        $group     = Mage::getModel('customer/group')->load($groupId);
+        $groupCode = $group->getCustomerGroupCode();
+
+        $varyKeys = Mage::getSingleton('aligent_varycookie/keys');
+
+        $varyKeys->setKey('customer_group', $groupCode);
+    }
+```
+
+
 Requirements
 ------------
 - PHP >= 5.2.0
