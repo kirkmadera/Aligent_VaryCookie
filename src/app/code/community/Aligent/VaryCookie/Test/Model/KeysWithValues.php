@@ -148,4 +148,12 @@ class Aligent_VaryCookie_Test_Model_KeysWithValues extends PHPUnit_Framework_Tes
         $keys->setKeysFromVaryString('foo=test1|bar|baz|foo=test2');
         $this->assertSame(array('bar' => true, 'baz' => true, 'foo' => 'test2'), $keys->getKeyValues());
     }
+
+    public function testSetKeysFromVaryStringWithBooleanStrings()
+    {
+        $keys = $this->_varyKeys;
+        $keys->setKeysFromVaryString('foo=true|bar=false|baz');
+        $this->assertSame(array('bar' => 'false', 'baz' => true, 'foo' => 'true'), $keys->getKeyValues());
+    }
+
 }
