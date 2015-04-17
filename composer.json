@@ -1,15 +1,35 @@
 {
-    "name": "aligent/varycookie",
-    "license": "proprietary",
-    "type": "magento-module",
-    "description": "Use this module with some custom Varnish rules to vary the varnish cache based on a cookie.",
-    "require": {
-        "magento-hackathon/magento-composer-installer": "*"
+  "name": "aligent/varycookie",
+  "license": "proprietary",
+  "type": "magento-module",
+  "description": "Use this module with some custom Varnish rules to vary the varnish cache based on a cookie.",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/aligent/mageqa.git"
     },
-    "authors":[
-        {
-            "name":"Luke Mills",
-            "email":"luke@aligent.com.au"
-        }
-    ]
+    {
+      "type": "composer",
+      "url": "http://packages.firegento.com"
+    }
+  ],
+  "require": {
+    "magento-hackathon/magento-composer-installer": "~2.0.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.1.x-dev",
+    "phing/phing": "~2.11@dev",
+    "composer/composer": "~1.0@dev",
+    "ecomdev/mage-ci": "dev-master",
+    "punkstar/mageqa": "dev-aligent"
+  },
+  "authors": [
+    {
+      "name": "Luke Mills",
+      "email": "luke@aligent.com.au"
+    }
+  ],
+  "extra": {
+    "magento-root-dir": "."
+  }
 }
